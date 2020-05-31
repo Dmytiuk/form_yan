@@ -1,58 +1,37 @@
-(function() {
-
-var app = {
-
-initialize : function () {
-this.modules();
-this.setUpListeners();
-},
-
-modules: function () {
-
-},
-
-setUpListeners: function () {
-    $('form').on('submit', app.submitForm);
-},
-
-submitForm: function (e) {
-    e.preventDefault();
-
-    var form = $(this);
-
-    if(app.validateForm(form) === false ) return false;
-
-    console.log('go in ajax');
-},
-      validateForm: function(form){
-        var inputs = form.find('input'),
-            valid = true;
-        input.tooltip('destroy');
-
-        $.each(inputs, function(index, val) {
-          var input = $(val),
-          val = input.val(),
-          formGroup = input.parents('.form-group'),
-          label = formGroup.find('label').text().toLowerCase(),
-          textError = 'Введіть' + label;
-
-          if(val.lenght === 0){
-            input.tooltip({
-              trigger: 'manual',
-              placement: 'right',
-              title: textError
-            }).tooltip('show');
-            valid = false
-          }else{
-
-          }
-
-
+let Validate = {
+    onload: document.addEventListener('DOMContentLoaded', function() { Validate.init(); }),
+    init: function() {
+        this.bind();
+    },
+    bind: function() {
+        $(document).on('click', 'button#submit', function(e) {
+            e.preventDefault();
+            const name = $('input#name').val();
+            const surname = $('input#surname').val();
+            const address = $('input#address').val();
+            const email = $('input#email').val();
+            Validate.validateValue(name, surname, address, email);
         });
-              return valid;
-      }
-}
+    },
 
-app.initialize();
+    validateValue: function (name, surname, address, email) {
+        let errors = []
 
-}());
+        if (name.length < 3) {
+            errors = 'name'
+            $("input#name").next().text('Коротке name');
+        }
+
+        if (errors.length === 0) {
+            $('form').get(0).reset();
+            $('form').hide();
+            $('.thank-you').show();
+
+            setTimeout(function () {
+                $('form').reset().show();
+            }, 3500);
+        } else {
+
+        }
+    }
+};
