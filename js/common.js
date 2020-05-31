@@ -11,6 +11,8 @@ let Validate = {
             const address = $('input#address').val();
             const email = $('input#email').val();
             Validate.validateValue(name, surname, address, email);
+        }).on('input', 'input', function(e) {
+            $('span.error').text('')
         });
     },
 
@@ -28,6 +30,7 @@ let Validate = {
             $('.thank-you').show();
 
             setTimeout(function () {
+                $('.thank-you').hide();
                 $('form').show();
             }, 3500);
         } else {
