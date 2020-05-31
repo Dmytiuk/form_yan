@@ -28,7 +28,7 @@ let Validate = {
             $('.thank-you').show();
 
             setTimeout(function () {
-                $('form').reset().show();
+                $('form').show();
             }, 3500);
         } else {
 
