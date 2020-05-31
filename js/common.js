@@ -25,8 +25,7 @@ let Validate = {
         }
 
         if (errors.length === 0) {
-            $('form').get(0).reset();
-            $('form').hide();
+            $('form').hide().get(0).reset();
             $('.thank-you').show();
 
             setTimeout(function () {
